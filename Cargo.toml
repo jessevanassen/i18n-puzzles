@@ -8,4 +8,6 @@ rust-version = "1.85.0"
 
 [dependencies]
 chrono = "0.4.40"
+chrono-tz = "0.10.1"
 itertools = "0.14.0"
+nom = "8.0.0"
