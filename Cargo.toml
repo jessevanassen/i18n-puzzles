@@ -7,8 +7,10 @@ rust-version = "1.85.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+bcrypt = "0.17.0"
 chrono = "0.4.40"
 chrono-tz = "0.10.1"
 itertools = "0.14.0"
 nom = "8.0.0"
+rayon = "1.10.0"
 unicode-normalization = "0.1.24"
