@@ -4,7 +4,8 @@ use chrono::{DateTime, Utc};
 use itertools::Itertools;
 
 fn main() {
-	let answer = stdin().lines()
+	let answer = stdin()
+		.lines()
 		.map(Result::unwrap)
 		.map(|str| DateTime::<Utc>::from_str(&str).unwrap())
 		.counts()

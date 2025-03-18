@@ -15,17 +15,16 @@ fn main() {
 		})
 		.collect::<Vec<_>>();
 
-	let crossword = input
-		.map(|line| {
-			let line = line.trim();
-			let len = line.chars().count();
-			let (ch_index, ch) = line
-				.trim()
-				.char_indices()
-				.find(|(_, ch)| *ch != '.')
-				.unwrap();
-			(len, (ch_index, ch))
-		});
+	let crossword = input.map(|line| {
+		let line = line.trim();
+		let len = line.chars().count();
+		let (ch_index, ch) = line
+			.trim()
+			.char_indices()
+			.find(|(_, ch)| *ch != '.')
+			.unwrap();
+		(len, (ch_index, ch))
+	});
 
 	let answer = crossword
 		.map(|(len, (ch_index, ch))| {
