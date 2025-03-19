@@ -1,5 +1,6 @@
 use std::io::stdin;
 
+use i18n_puzzles::crossword::parse_crossword;
 use itertools::Itertools;
 
 fn main() {
@@ -15,28 +16,12 @@ fn main() {
 		})
 		.collect::<Vec<_>>();
 
-	let crossword = input.map(|line| {
-		let line = line.trim();
-		let len = line.chars().count();
-		let (ch_index, ch) = line
-			.trim()
-			.char_indices()
-			.find(|(_, ch)| *ch != '.')
-			.unwrap();
-		(len, (ch_index, ch))
-	});
-
-	let answer = crossword
-		.map(|(len, (ch_index, ch))| {
+	let answer = parse_crossword(input)
+		.map(|entry| {
 			words
 				.iter()
 				.enumerate()
-				.filter(|(_, word)| word.chars().count() == len)
-				.filter(|(_, word)| match word.chars().nth(ch_index) {
-					Some(ch_) => ch_ == ch,
-					None => false,
-				})
-				.map(|(i, _)| i + 1)
+				.filter_map(|(i, word)| entry.matches(word).then_some(i + 1))
 				.exactly_one()
 				.unwrap()
 		})
